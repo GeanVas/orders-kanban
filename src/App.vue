@@ -12,22 +12,24 @@ export default {
   data() {
     return {
       drag: false,
-      users: [
+      orders: [
         {
           id: 1,
-          name: "Adrian Schubert",
-          avatar:
-            "https://pickaface.net/gallery/avatar/unr_sample_161118_2054_ynlrg.png",
+          client: "Adrian Schubert",
+          date: "2023-12-20",
+          recipes: []
         },
         {
           id: 2,
-          name: "Violet Gates",
-          avatar: "https://pickaface.net/gallery/avatar/freud51c8b3f65e7dc.png",
+          client: "Violet Gates",
+          date: "2023-12-20",
+          recipes: []
         },
         {
           id: 3,
-          name: "Steve Jobs",
-          avatar: "https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png",
+          client: "Steve Jobs",
+          date: "2023-12-20",
+          recipes: []
         },
       ],
     };
@@ -41,7 +43,7 @@ export default {
       tag="ul"
       class="w-full max-w-md"
       ghost-class="moving-card"
-      v-model="users"
+      v-model="orders"
       group="people"
       @start="drag = true"
       @end="drag = false"
