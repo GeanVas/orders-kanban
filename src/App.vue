@@ -1,13 +1,15 @@
 <script lang="ts">
 import draggable from "vuedraggable";
 
-import order from "./components/Order.vue";
+import Order from "./components/Order.vue";
+import BoardColumn from "./components/BoardColumn.vue";
 
 export default {
   name: "App",
   components: {
     draggable,
-    order,
+    Order,
+    BoardColumn,
   },
   data() {
     return {
@@ -17,19 +19,19 @@ export default {
           id: 1,
           client: "Adrian Schubert",
           date: "2023-12-20",
-          recipes: []
+          recipes: [],
         },
         {
           id: 2,
           client: "Violet Gates",
           date: "2023-12-20",
-          recipes: []
+          recipes: [],
         },
         {
           id: 3,
           client: "Steve Jobs",
           date: "2023-12-20",
-          recipes: []
+          recipes: [],
         },
       ],
     };
@@ -38,26 +40,22 @@ export default {
 </script>
 
 <template>
-  <div class="flex m-10">
-    <draggable
-      tag="ul"
-      class="w-full max-w-md"
-      ghost-class="moving-card"
-      v-model="orders"
-      group="people"
-      @start="drag = true"
-      @end="drag = false"
-      item-key="id"
-      :animation="200"
-    >
-      <template #item="{ element }">
-        <order :item="element" />
-      </template>
-    </draggable>
-  </div>
+  <main>
+    <h1 class="text-3xl font-bold text-center">Orders</h1>
+    <div class="grid-container">
+      <BoardColumn title="To do" :orders="orders" :group="orders"/>
+      <BoardColumn title="In progress" :orders="orders" :group="orders" />
+      <BoardColumn title="Done" :orders="orders" />
+    </div>
+  </main>
 </template>
 
 <style lang="scss">
+.grid-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
 .moving-card {
   @apply opacity-50 bg-gray-100 border border-blue-500;
 }
